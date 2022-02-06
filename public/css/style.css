@@ -1,12 +1,25 @@
+.btn {
+  border: none;
+  padding: 1em 3em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 body {
   font-family: sans-serif;
 }
 
 .answer {
-  padding: 2em;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  background-color: cadetblue;
+  cursor: pointer;
+}
+
+.answers {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  margin: 0.75em;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,7 +5,9 @@ export default function Start(props) {
         <h1>Quizzical</h1>
         <p>Description</p>
         <button
-            onClick={props.toggle}>
+            onClick={props.toggle}
+            className="btn"
+        >
             Start Quiz
         </button>
     </div>

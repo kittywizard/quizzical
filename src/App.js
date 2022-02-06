@@ -13,8 +13,7 @@ function App() {
   }
 
   useEffect(() =>  {
-    console.log('use effect is running');
-    
+
     fetch(`https://opentdb.com/api.php?amount=5&type=multiple`)
     .then(resp => resp.json())
     .then(data => {
