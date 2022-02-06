@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+}
+
+.answer {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=style.css.map */
