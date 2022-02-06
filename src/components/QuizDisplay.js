@@ -5,11 +5,14 @@ import {React, useState} from "react";
 export default function QuizDisplay(props) {
 
     let tempAnswerArray = [];
+    let completeAnswerArray = [];
     let answerObject = {};
 
     props.data.forEach((obj, index) => {
         //within each object, grab the incorrect answer array
         //set it up to an obj inside a tempAnswerArray
+        tempAnswerArray = [];
+        
         obj.incorrect_answers.forEach(answer => {
             answerObject = {
                 answerCopy: answer,
@@ -19,6 +22,7 @@ export default function QuizDisplay(props) {
             tempAnswerArray.push(answerObject);
         });
 
+        //correct answer 
         answerObject = {
             answerCopy: obj.correct_answer,
             isCorrectAnswer: true,
@@ -27,18 +31,14 @@ export default function QuizDisplay(props) {
 
         //splice correct answer into array randomly!
         tempAnswerArray.splice(Math.floor((Math.random() * (3 - 0 + 1)) + 0), 0, answerObject);
+
+        //push each array into yet another array! this will become state
+        completeAnswerArray.push(tempAnswerArray);
     });
 
     //set state with setup array
-    const [answerArray, setAnswerArray] = useState(tempAnswerArray);
-    console.log(answerArray);
+    const [answerArray, setAnswerArray] = useState(completeAnswerArray);
 
-    /* 
-        PROBLEMS!
-                this is currently putting ALL answers into one big array.
-                need ONE array that contains FIVE smaller arrays. ugh
-
-    */
   
     //map through the array and deploy components
     const questionArr = props.data.map((item, index) => {
@@ -47,13 +47,12 @@ export default function QuizDisplay(props) {
                 question={item.question}
                 key={nanoid()}
                 id={index + 1}
-                answerArray={answerArray}
+                answerArray={answerArray[index]}
                 handleClick={(e) => handleClick(e)}
             />
             </div>
     });
 
-    //unsure if this will stay here
     function checkAnswers() {
         console.log('check answers');
 
@@ -64,17 +63,19 @@ export default function QuizDisplay(props) {
     }
 
     
-    //function that handles when you click on an answer
+    //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event) {
         event.preventDefault();
         const {name} = event.target;
         console.log(name);
-
-        //change styling of answer - background color change
-        //add to an array so we know which ones user picked
-            //also need the correct answer, if user didn't pick it?
         
-       
+        /*
+            will need to set state here - change isSelected to true, ensure that only one can be selected at a time
+            change style happens in the Answer component when that variable changes
+
+
+        */
+        
     }
     
     return (
