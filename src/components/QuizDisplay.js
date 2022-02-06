@@ -14,10 +14,26 @@ export default function QuizDisplay(props) {
             />
             </div>
     });
+
+    //unsure if this will stay here
+    function checkAnswers() {
+        console.log('check answers')
+    }
     
     return (
-        <div className="quiz-display">
-            {questionArr}        
-        </div>
+        <main>
+            <section className="quiz-display">
+                {questionArr}        
+            </section>
+
+            <section>
+                <button 
+                    onClick={checkAnswers}
+                >
+                    Check answers
+                </button>
+            </section>
+
+        </main>
     )
 }
