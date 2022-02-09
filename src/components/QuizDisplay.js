@@ -66,13 +66,14 @@ export default function QuizDisplay(props) {
     //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event) {
         event.preventDefault();
-        const {name} = event.target;
+        const {name, value} = event.target;
         console.log(name);
         
         /*
             will need to set state here - change isSelected to true, ensure that only one can be selected at a time
             change style happens in the Answer component when that variable changes
 
+            need to actually grab what i need
 
         */
         

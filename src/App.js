@@ -13,16 +13,21 @@ function App() {
   }
 
   useEffect(() =>  {
+    try {
+      fetch(`https://opentdb.com/api.php?amount=5&type=multiple`)
+      .then(resp => resp.json())
+      .then(data => {
+        
+        let dataResult = data.results;
 
-    fetch(`https://opentdb.com/api.php?amount=5&type=multiple`)
-    .then(resp => resp.json())
-    .then(data => {
-      
-      let dataResult = data.results;
-
-      //update state with question array
-      setQuestions(dataResult);
-    });
+        //update state with question array
+        setQuestions(dataResult);
+      });
+    }
+    catch(error){
+      console.log(error);
+    }
+   
 
   }, []);
 
