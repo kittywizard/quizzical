@@ -66,8 +66,22 @@ export default function QuizDisplay(props) {
     //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event) {
         event.preventDefault();
-        const {name, value} = event.target;
-        console.log(name);
+        
+        console.log(event.target.innerText);
+
+        //filter through array, looking for one that matches props.copy
+        //set state on isSelected
+
+        setAnswerArray(prevState => {
+            let tempArray = [];
+            for(let i = 0; i < answerArray.length; i++) {
+                if(event.target.innerText === answerArray[i].answerCopy){
+                    //push updated content to temparray
+                } else {
+                    //push reg content to temp array
+                }
+            }
+        })
         
         /*
             will need to set state here - change isSelected to true, ensure that only one can be selected at a time
