@@ -72,11 +72,22 @@ export default function QuizDisplay(props) {
         //filter through array, looking for one that matches props.copy
         //set state on isSelected
 
+        
+        // function handleEntryInput(e) {
+        //     const {name, value, type, checked} = e.target;
+            
+        //     setEntry(prevState => ({
+        //             ...prevState,
+        //             [name]: type === "checked" ? checked : value
+        //     }))
+        // }
+
         setAnswerArray(prevState => {
-            let tempArray = [];
+            let tempArray = answerArray;
             for(let i = 0; i < answerArray.length; i++) {
                 if(event.target.innerText === answerArray[i].answerCopy){
-                    //push updated content to temparray
+                    tempArray[i].isSelected = !tempArray[i].isSelected;
+                    //need to add way to make sure it can only happen once
                 } else {
                     //push reg content to temp array
                 }
