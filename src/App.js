@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from "react";
 import Start from "./components/Start";
-import QuizDisplay from "./components/QuizDisplay";
+import QuizDisplay from "./components/QuizDisplay/QuizDisplay";
 import { nanoid } from "nanoid";
 
 

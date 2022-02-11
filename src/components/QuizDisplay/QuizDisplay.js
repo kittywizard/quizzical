@@ -1,4 +1,4 @@
-import Question from "./Question";
+import Question from "../Question";
 import { nanoid } from "nanoid";
 import {React, useState} from "react";
 
@@ -61,46 +61,29 @@ export default function QuizDisplay(props) {
         //change styling on background to another color - to show which ones were correct
 
     }
-
     
     //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event) {
         event.preventDefault();
-        
-        console.log(event.target.innerText);
 
-        //filter through array, looking for one that matches props.copy
-        //set state on isSelected
-
-        
-        // function handleEntryInput(e) {
-        //     const {name, value, type, checked} = e.target;
-            
-        //     setEntry(prevState => ({
-        //             ...prevState,
-        //             [name]: type === "checked" ? checked : value
-        //     }))
-        // }
+        let tempArray = [];
+        let copy = event.target.innerText;
 
         setAnswerArray(prevState => {
-            let tempArray = answerArray;
-            for(let i = 0; i < answerArray.length; i++) {
-                if(event.target.innerText === answerArray[i].answerCopy){
-                    tempArray[i].isSelected = !tempArray[i].isSelected;
-                    //need to add way to make sure it can only happen once
-                } else {
-                    //push reg content to temp array
-                }
+
+            //loop through the questions
+            for(let i = 0; i < prevState.length; i++) {
+                tempArray = prevState[i];
+                tempArray.map(answer => {
+                    if(copy === tempArray[v].answerCopy){
+                        tempArray[v].isSelected = !tempArray[v].isSelected;
+                        return [...prevState, tempArray];
+                        //need to add way to make sure it can only happen once
+                    } 
+                });
+                
             }
         })
-        
-        /*
-            will need to set state here - change isSelected to true, ensure that only one can be selected at a time
-            change style happens in the Answer component when that variable changes
-
-            need to actually grab what i need
-
-        */
         
     }
     
