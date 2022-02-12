@@ -8,6 +8,7 @@ export default function QuizDisplay(props) {
     let completeAnswerArray = [];
     let answerObject = {};
 
+    //setting the answer array objects up
     props.data.forEach((obj, index) => {
         //within each object, grab the incorrect answer array
         //set it up to an obj inside a tempAnswerArray
@@ -39,7 +40,6 @@ export default function QuizDisplay(props) {
     //set state with setup array
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
 
-  
     //map through the array and deploy components
     const questionArr = props.data.map((item, index) => {
         return <div className="quiz-questionBlock">
@@ -66,24 +66,29 @@ export default function QuizDisplay(props) {
     function handleClick(event) {
         event.preventDefault();
 
-        let tempArray = [];
+        //grab copy from the event - what was clicked
         let copy = event.target.innerText;
 
-        setAnswerArray(prevState => {
+        //for loop needs to loop through the entire answer array (which has arrays within it)
+        for(let i = 0; i < answerArray.length; i++) {
+            
+            //this should return an updated array with a new isSelected fixed
+                //map through each inner array - the four questions and find which one has been clicked and update it
+            //filter first?
+            const result = answerArray[i].filter(answer => answer.answerCopy === copy);
+            console.log(result)
+            return result;
+            
+            //outside of for loop - take updated array and push to state?
+            
+        }
 
-            //loop through the questions
-            for(let i = 0; i < prevState.length; i++) {
-                tempArray = prevState[i];
-                tempArray.map(answer => {
-                    if(copy === tempArray[v].answerCopy){
-                        tempArray[v].isSelected = !tempArray[v].isSelected;
-                        return [...prevState, tempArray];
-                        //need to add way to make sure it can only happen once
-                    } 
-                });
-                
-            }
-        })
+
+        // setAnswerArray(prevState => {
+
+        //     //loop through the questions
+           
+        // })
         
     }
     
