@@ -76,39 +76,21 @@ export default function QuizDisplay(props) {
 
         //grab copy from the event - what was clicked
         let copy = event.target.innerText;
+
         //need to find the index of the array that matches (+1) the questionID THEN can filter/compare whatever
-        const filteredArray = answerArray.filter(answer => questionID === answer.findIndex(answer => ));
+            //.flat() gets rid of the nesting effect
+        const filteredArray = answerArray.filter((answer, index) => questionID === index + 1).flat();
 
-        //garbage
-        for(let i = 0; i < answerArray.length; i++) {
-            console.log(answerArray[i])
-            //need to find its 
-            if(answerArray[i].id === questionID) {
-                console.log(answerArray[i])
+        //with filtered array, check for the one where the copy matches
+        filteredArray.forEach(answer => {
+            if(copy === answer.answerCopy) {
+                console.log('update selected')
+                answer.isSelected = !answer.isSelected;
             }
-        }
-        
+        })
 
-        //filter array to only array we need
-
-        //combine these two - filter the array down so we can go in and update its state
-
-        // setAnswerArray(prevState => {
-        //     const filteredArray = prevState.filter(answer => questionID === answer.id);
-
-        //     filteredArray.forEach(answer => {
-        //         if(copy === answer.answerCopy) {
-        //             //update isSelected
-        //             answer.isSelected = !answer.isSelected;
-        //         }
-        //     });
-
-        //     prevState.map(answer => {
-        //         //want to return the new state which is the same, except for finding and replacing w/ filteredarray
-        //         return questionID === answer.id ? {...answer, filteredArray} : answer;
-        //     })
-           
-        // })
+        //update state!!!!
+        setAnswerArray(prevState => prevState.map(answer => questionID === answer.id ? filteredArray : answer))
         
     }
     
