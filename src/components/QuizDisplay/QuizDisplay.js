@@ -9,6 +9,14 @@ export default function QuizDisplay(props) {
     let answerObject = {};
 
     //setting the answer array objects up
+
+    /*
+        NEED TO DO:
+        -add an id to each answer object tying it to the question?
+        -filter based on question and then can cycle through to see which was selected
+
+
+    */
     props.data.forEach((obj, index) => {
         //within each object, grab the incorrect answer array
         //set it up to an obj inside a tempAnswerArray
@@ -48,7 +56,7 @@ export default function QuizDisplay(props) {
                 key={nanoid()}
                 id={index + 1}
                 answerArray={answerArray[index]}
-                handleClick={(e) => handleClick(e)}
+                handleClick={(e, id) => handleClick(e, id)}
             />
             </div>
     });
@@ -63,30 +71,42 @@ export default function QuizDisplay(props) {
     }
     
     //function that handles when you click on an answer, will change state of selected variable
-    function handleClick(event) {
+    function handleClick(event, questionID) {
         event.preventDefault();
 
         //grab copy from the event - what was clicked
         let copy = event.target.innerText;
+        //need to find the index of the array that matches (+1) the questionID THEN can filter/compare whatever
+        const filteredArray = answerArray.filter(answer => questionID === answer.findIndex(answer => ));
 
-        //for loop needs to loop through the entire answer array (which has arrays within it)
+        //garbage
         for(let i = 0; i < answerArray.length; i++) {
-            
-            //this should return an updated array with a new isSelected fixed
-                //map through each inner array - the four questions and find which one has been clicked and update it
-            //filter first?
-            const result = answerArray[i].filter(answer => answer.answerCopy === copy);
-            console.log(result)
-            return result;
-            
-            //outside of for loop - take updated array and push to state?
-            
+            console.log(answerArray[i])
+            //need to find its 
+            if(answerArray[i].id === questionID) {
+                console.log(answerArray[i])
+            }
         }
+        
 
+        //filter array to only array we need
+
+        //combine these two - filter the array down so we can go in and update its state
 
         // setAnswerArray(prevState => {
+        //     const filteredArray = prevState.filter(answer => questionID === answer.id);
 
-        //     //loop through the questions
+        //     filteredArray.forEach(answer => {
+        //         if(copy === answer.answerCopy) {
+        //             //update isSelected
+        //             answer.isSelected = !answer.isSelected;
+        //         }
+        //     });
+
+        //     prevState.map(answer => {
+        //         //want to return the new state which is the same, except for finding and replacing w/ filteredarray
+        //         return questionID === answer.id ? {...answer, filteredArray} : answer;
+        //     })
            
         // })
         
