@@ -8,7 +8,7 @@ export default function Answer(props) {
         <div 
             className="answer"
             style={styles}
-            onClick={(e) => props.toggle(e)}
+            onClick={(e) => props.toggle(e, props.id)}
         >
             {props.copy}
         </div>

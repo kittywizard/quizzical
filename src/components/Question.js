@@ -9,8 +9,8 @@ export default function Question(props) {
                 isCorrectAnswer={item.isCorrectAnswer}
                 isSelected={item.isSelected}
                 key={nanoid()}
-                id={index}
-                toggle={props.handleClick} 
+                id={props.id}
+                toggle={(e, id) => props.handleClick(e, id)} 
                 />
     });
 
