@@ -1,6 +1,6 @@
 import Question from "../Question";
 import { nanoid } from "nanoid";
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 
 export default function QuizDisplay(props) {
 
@@ -8,15 +8,6 @@ export default function QuizDisplay(props) {
     let completeAnswerArray = [];
     let answerObject = {};
 
-    //setting the answer array objects up
-
-    /*
-        NEED TO DO:
-        -add an id to each answer object tying it to the question?
-        -filter based on question and then can cycle through to see which was selected
-
-
-    */
     props.data.forEach((obj, index) => {
         //within each object, grab the incorrect answer array
         //set it up to an obj inside a tempAnswerArray
@@ -47,6 +38,27 @@ export default function QuizDisplay(props) {
 
     //set state with setup array
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
+    const [answerCheck, setAnswerCheck] = useState(false);
+
+    //error because this is running before the state is 'finalized'
+    useEffect(() => {
+        let check = 0;
+        //every time the answerArray state changes, check to see if 5 answers have been selected
+        answerArray.forEach(answer => {
+            for(let a=0; a < answerArray.length; a++) {
+                if(answer[a].isSelected) {
+                    console.log(answer[a].answerCopy);
+                    check++;
+                }
+            }
+        })
+            
+            
+            if(check === 5){
+                setAnswerCheck(true)
+            }
+     
+    },[answerArray]);
 
     //map through the array and deploy components
     const questionArr = props.data.map((item, index) => {
@@ -62,10 +74,17 @@ export default function QuizDisplay(props) {
     });
 
     function checkAnswers() {
-        console.log('check answers');
 
-        //grab array of answers submitted - check to see which ones have correctAnswers
+        const collectedAnswers = answerArray.flatMap(answer => {
+            for(let i=0; i < answerArray.length; i++) {
+                if(answer[i].isSelected){
+                    return answer[i];
+                }
+            }
+        });
+        
 
+        
         //change styling on background to another color - to show which ones were correct
 
     }
@@ -116,12 +135,12 @@ export default function QuizDisplay(props) {
             </section>
 
             <section>
-                <button 
+                {answerCheck && <button 
                     onClick={checkAnswers}
                     className="btn"
-                >
+                > 
                     Check answers
-                </button>
+                </button>}
             </section>
 
             <section>
