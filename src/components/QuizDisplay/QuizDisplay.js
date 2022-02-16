@@ -73,25 +73,40 @@ export default function QuizDisplay(props) {
     //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event, questionID) {
         event.preventDefault();
-
-        //grab copy from the event - what was clicked
         let copy = event.target.innerText;
 
         //need to find the index of the array that matches (+1) the questionID THEN can filter/compare whatever
             //.flat() gets rid of the nesting effect
         const filteredArray = answerArray.filter((answer, index) => questionID === index + 1).flat();
 
-        //with filtered array, check for the one where the copy matches
-        filteredArray.forEach(answer => {
+        //if some of them are answered then...
+        if(filteredArray.some(answer => answer.isSelected)) {
+            //find the specific object
+            let selectedAnswer = filteredArray.find(answer => answer.isSelected);
+            console.log(selectedAnswer);
+
+            //if it's NOT the one that was just clicked (i.e the user wishes to unselect their answer)
+            if(selectedAnswer.answerCopy !== copy) {
+
+                console.log('selected answer does not matches copy')
+            } else {
+                changeAnswer(filteredArray, copy, questionID);
+            }
+        } else {
+            changeAnswer(filteredArray, copy, questionID);
+        }
+    }
+
+    //change state - need in 2 places
+    function changeAnswer(arr,copy,id) {
+        arr.forEach(answer => {
             if(copy === answer.answerCopy) {
-                console.log('update selected')
                 answer.isSelected = !answer.isSelected;
             }
-        })
-
-        //update state!!!!
-        setAnswerArray(prevState => prevState.map(answer => questionID === answer.id ? filteredArray : answer))
+        });
         
+        //update state!!!!
+        setAnswerArray(prevState => prevState.map(answer => id === answer.id ? arr : answer))
     }
     
     return (
