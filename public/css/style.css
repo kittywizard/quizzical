@@ -5,6 +5,26 @@
   cursor: pointer;
 }
 
+.correct-unselected {
+  background-color: pink;
+}
+
+.correct-selected {
+  background-color: chocolate;
+}
+
+.selected-incorrect {
+  background-color: cornflowerblue;
+}
+
+.unselected {
+  background-color: cadetblue;
+}
+
+.selected {
+  background-color: #ccc;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -12,7 +32,6 @@ body {
 .answer {
   padding: 0.5em 1em;
   border-radius: 10px;
-  background-color: cadetblue;
   cursor: pointer;
 }
 
