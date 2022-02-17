@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 export default function Answer(props) {
 
     const styles = {
@@ -7,6 +9,11 @@ export default function Answer(props) {
     const winStateStyles = {
         backgroundColor: props.isCorrectAnswer ? "pink" : "green"
     }
+
+    useEffect(() => {
+
+    },[])
+    
 
     return (
         <div 
