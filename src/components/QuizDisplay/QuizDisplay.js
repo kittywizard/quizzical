@@ -36,31 +36,35 @@ export default function QuizDisplay(props) {
         completeAnswerArray.push(tempAnswerArray);
     });
 
-    //set state with setup array
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
     const [answerCheck, setAnswerCheck] = useState(false);
+    const [results, setResults] = useState([]);
 
-    //error because this is running before the state is 'finalized'
+    /*
+        use effect works - need to work out a bug if user changes answer after all 5 are selected
+    */
+
     useEffect(() => {
         let check = 0;
-        //every time the answerArray state changes, check to see if 5 answers have been selected
-        answerArray.forEach(answer => {
-            for(let a=0; a < answerArray.length; a++) {
-                if(answer[a].isSelected) {
-                    console.log(answer[a].answerCopy);
-                    check++;
+
+        //need to check and ensure it's not the initial render
+        if(answerArray.length === 5){
+
+            answerArray.forEach(answer => {
+                for(let a = 0; a < 3; a++) {
+                    if(answer[a].isSelected) {
+                        check++;
+                    }
                 }
-            }
-        })
-            
-            
-            if(check === 5){
-                setAnswerCheck(true)
-            }
+            })
+
+        }
+        if(check === 5){
+            setAnswerCheck(prevState => !prevState);
+        }
      
     },[answerArray]);
 
-    //map through the array and deploy components
     const questionArr = props.data.map((item, index) => {
         return <div className="quiz-questionBlock">
             <Question 
@@ -69,23 +73,31 @@ export default function QuizDisplay(props) {
                 id={index + 1}
                 answerArray={answerArray[index]}
                 handleClick={(e, id) => handleClick(e, id)}
+                results={results}
             />
             </div>
     });
 
     function checkAnswers() {
 
-        const collectedAnswers = answerArray.flatMap(answer => {
-            for(let i=0; i < answerArray.length; i++) {
-                if(answer[i].isSelected){
-                    return answer[i];
-                }
-            }
-        });
         
+        // const checkForCorrect = answerArray.flatMap(answer => {
+        //     for(let i=0; i < answerArray.length; i++) {
+        //         if(answer[i].isCorrectAnswer){
+        //             return answer[i];
+        //         }
+        //     }
+        // });
 
+        //const correctAnswers = checkForCorrect.filter(answer => answer.isSelected);
+
+        //const checkForCorrect = collectedAnswers.filter(answer => answer.isCorrectAnswer);
         
-        //change styling on background to another color - to show which ones were correct
+        //check array for correct answers
+            //check to see if correct answer is also Selected
+            //add diff class
+            //add to results tally if correct
+        //display/update result state
 
     }
     
@@ -102,7 +114,6 @@ export default function QuizDisplay(props) {
         if(filteredArray.some(answer => answer.isSelected)) {
             //find the specific object
             let selectedAnswer = filteredArray.find(answer => answer.isSelected);
-            console.log(selectedAnswer);
 
             //if it's NOT the one that was just clicked (i.e the user wishes to unselect their answer)
             if(selectedAnswer.answerCopy !== copy) {
@@ -143,9 +154,10 @@ export default function QuizDisplay(props) {
                 </button>}
             </section>
 
-            <section>
+            {//need a var here to determine when to display results
+                <section>
                 Results here
-            </section>
+            </section>}
 
         </main>
     )

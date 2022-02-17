@@ -4,9 +4,14 @@ export default function Answer(props) {
         backgroundColor: props.isSelected ? "#ccc" : "cadetblue"
     }
 
+    const winStateStyles = {
+        backgroundColor: props.isCorrectAnswer ? "pink" : "green"
+    }
+
     return (
         <div 
             className="answer"
+            //style={props.results ? {styles} : {winStateStyles}}
             style={styles}
             onClick={(e) => props.toggle(e, props.id)}
         >
