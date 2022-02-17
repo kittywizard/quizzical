@@ -79,7 +79,7 @@ export default function QuizDisplay(props) {
     });
 
     function checkAnswers() {
-
+        //set state that when this get clicked its set to true. have a useeffect looking for that change and take care of it
         
         // const checkForCorrect = answerArray.flatMap(answer => {
         //     for(let i=0; i < answerArray.length; i++) {
@@ -118,7 +118,7 @@ export default function QuizDisplay(props) {
             //if it's NOT the one that was just clicked (i.e the user wishes to unselect their answer)
             if(selectedAnswer.answerCopy !== copy) {
 
-                console.log('selected answer does not matches copy')
+                console.log('selected answer does not match copy')
             } else {
                 changeAnswer(filteredArray, copy, questionID);
             }
