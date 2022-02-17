@@ -38,7 +38,7 @@ export default function QuizDisplay(props) {
 
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
     const [answerCheck, setAnswerCheck] = useState(false);
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState(false);
 
     /*
         use effect works - need to work out a bug if user changes answer after all 5 are selected
@@ -65,6 +65,12 @@ export default function QuizDisplay(props) {
      
     },[answerArray]);
 
+    
+    useEffect(() => {
+        //render component AGAIN 
+        //check status of selected / correct answer apply style?
+    },[results])
+
     const questionArr = props.data.map((item, index) => {
         return <div className="quiz-questionBlock">
             <Question 
@@ -80,7 +86,7 @@ export default function QuizDisplay(props) {
 
     function checkAnswers() {
         //set state that when this get clicked its set to true. have a useeffect looking for that change and take care of it
-        
+        setResults(true);
         // const checkForCorrect = answerArray.flatMap(answer => {
         //     for(let i=0; i < answerArray.length; i++) {
         //         if(answer[i].isCorrectAnswer){

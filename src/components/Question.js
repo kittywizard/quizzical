@@ -3,6 +3,11 @@ import { nanoid } from "nanoid";
 
 export default function Question(props) {
 
+    const styles = {
+        backgroundColor: props.isSelected ? "#ccc" : "cadetblue"
+    }
+    
+
     const displayAnswerArray = props.answerArray.map((item, index) => {
         return <Answer
                 copy={item.answerCopy}
@@ -11,7 +16,8 @@ export default function Question(props) {
                 key={nanoid()}
                 id={props.id}
                 toggle={(e, id) => props.handleClick(e, id)}
-                results={props.results} 
+                results={props.results}
+                styles={styles} 
                 />
     });
 
