@@ -39,12 +39,12 @@ export default function QuizDisplay(props) {
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
     const [answerCheck, setAnswerCheck] = useState(false);
     const [results, setResults] = useState(false);
+    const [correctAnswers, setCorrectAnswers] = useState([])
 
     /*
         use effect works - need to work out a bug if user changes answer after all 5 are selected
     */
 
-    
     useEffect(() => {
         let check = 0;
 
@@ -68,8 +68,21 @@ export default function QuizDisplay(props) {
 
     
     useEffect(() => {
-        //render component AGAIN 
-        //check status of selected / correct answer apply style?
+        if(results) {
+ 
+            const checkForCorrect = answerArray.flatMap(answer => {
+                for(let i=0; i < 4; i++) {
+                    if(answer[i].isCorrectAnswer && answer[i].isSelected){
+                        return answer[i];
+                    }
+                }
+            });
+
+            console.log(checkForCorrect)
+            setCorrectAnswers(checkForCorrect);
+        }
+        
+
     },[results])
 
     const questionArr = props.data.map((item, index) => {
@@ -85,32 +98,18 @@ export default function QuizDisplay(props) {
             </div>
     });
 
-    function checkAnswers() {
-        //set state that when this get clicked its set to true. have a useeffect looking for that change and take care of it
-        setResults(true);
-        // const checkForCorrect = answerArray.flatMap(answer => {
-        //     for(let i=0; i < answerArray.length; i++) {
-        //         if(answer[i].isCorrectAnswer){
-        //             return answer[i];
-        //         }
-        //     }
-        // });
-
-        //const correctAnswers = checkForCorrect.filter(answer => answer.isSelected);
-
-        //const checkForCorrect = collectedAnswers.filter(answer => answer.isCorrectAnswer);
-        
-        //check array for correct answers
-            //check to see if correct answer is also Selected
-            //add diff class
-            //add to results tally if correct
-        //display/update result state
-
-    }
+    function checkAnswers() {setResults(true)}
     
     //function that handles when you click on an answer, will change state of selected variable
     function handleClick(event, questionID) {
         event.preventDefault();
+
+        //if user is checking results, no changing answers allowed!
+        if(results){
+            return;
+        }
+
+        //otherwise, commence with the changing
         let copy = event.target.innerText;
 
         //need to find the index of the array that matches (+1) the questionID THEN can filter/compare whatever
@@ -163,7 +162,7 @@ export default function QuizDisplay(props) {
 
             {results &&
                 <section>
-                Results here
+                You got {correctAnswers.length} / 5 answers correct!
             </section>}
 
         </main>
