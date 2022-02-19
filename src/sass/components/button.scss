@@ -14,10 +14,18 @@
     color: #fff;
     max-width: 500px;
     align-self: center;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34); 
+    box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34);
 }
 
 .btn:hover,
 .btn:focus {
-    transition: all 2s ease-in;
+    transition: background-color 1s ease-in;
     background-color: $bg-color;
+}
+
+.btn:active {
+    transition: transform .5s;
+    transform: translateY(2px);
+    
 }

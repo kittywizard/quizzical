@@ -1,6 +1,6 @@
-.container {
 
-    &--start {
+    .container--start,
+    .quiz-display {
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -10,8 +10,11 @@
         background-color: #fff;
         border-radius: 15px;
         padding: 2em;
+
+        -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34); 
+        box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34);
     }
-}
+
 
 .headline {
     font-size: 2rem;

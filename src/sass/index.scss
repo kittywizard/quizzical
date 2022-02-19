@@ -4,12 +4,13 @@
 @import './components/button.scss';
 @import './components/answers.scss';
 @import './components/start.scss';
+@import './components/quizdisplay.scss';
 
 
 body {
     font-family: $font, sans-serif;
     font-weight: 400;
-    background-color: lightblue;
+    background-color: rgba(210, 233, 241, 0.979);
 }
 
 .container {
