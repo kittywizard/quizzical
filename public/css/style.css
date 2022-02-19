@@ -3,6 +3,10 @@
   padding: 1em 3em;
   border-radius: 10px;
   cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: 1px;
 }
 
 .correct-unselected {
@@ -25,10 +29,6 @@
   background-color: #ccc;
 }
 
-body {
-  font-family: sans-serif;
-}
-
 .answer {
   padding: 0.5em 1em;
   border-radius: 10px;
@@ -39,6 +39,39 @@ body {
   display: flex;
   margin: 0.75em;
   justify-content: space-between;
+}
+
+.container--start {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+  width: 50%;
+  background-color: #444;
+}
+
+.headline {
+  font-size: 2rem;
+  margin: 0.3em;
+}
+
+.start--desc {
+  margin: 0.2em;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

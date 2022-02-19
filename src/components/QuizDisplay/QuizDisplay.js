@@ -69,21 +69,16 @@ export default function QuizDisplay(props) {
     
     useEffect(() => {
         if(results) {
- 
-            const checkForCorrect = answerArray.flatMap(answer => {
+             const checkForCorrect = answerArray.filter(answer => {
                 for(let i=0; i < 4; i++) {
                     if(answer[i].isCorrectAnswer && answer[i].isSelected){
                         return answer[i];
                     }
                 }
             });
-
-            console.log(checkForCorrect)
             setCorrectAnswers(checkForCorrect);
         }
-        
-
-    },[results])
+    },[results]);
 
     const questionArr = props.data.map((item, index) => {
         return <div className="quiz-questionBlock">

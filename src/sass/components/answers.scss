@@ -17,3 +17,15 @@
 .selected {
     background-color: #ccc;
 }
+
+.answer {
+    padding: 0.5em 1em; 
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.answers {
+    display: flex;
+    margin: 0.75em;
+    justify-content: space-between;
+}
