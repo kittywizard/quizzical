@@ -1,6 +1,7 @@
 import Question from "../Question";
 import { nanoid } from "nanoid";
 import {React, useEffect, useState} from "react";
+import he from 'he';
 
 export default function QuizDisplay(props) {
 
@@ -15,7 +16,7 @@ export default function QuizDisplay(props) {
         
         obj.incorrect_answers.forEach(answer => {
             answerObject = {
-                answerCopy: answer,
+                answerCopy: he.decode(answer),
                 isCorrectAnswer: false,
                 isSelected: false
             }
@@ -24,7 +25,7 @@ export default function QuizDisplay(props) {
 
         //correct answer 
         answerObject = {
-            answerCopy: obj.correct_answer,
+            answerCopy: he.decode(obj.correct_answer),
             isCorrectAnswer: true,
             isSelected: false
         }
@@ -82,7 +83,7 @@ export default function QuizDisplay(props) {
 
     const questionArr = props.data.map((item, index) => {
         return <Question 
-                question={item.question}
+                question={he.decode(item.question)}
                 key={nanoid()}
                 id={index + 1}
                 answerArray={answerArray[index]}
@@ -155,7 +156,7 @@ export default function QuizDisplay(props) {
 
             {results &&
                 <section className="results">
-                You got {correctAnswers.length} / 5 answers correct!
+                You got <span className="result-count">{correctAnswers.length}</span> / 5 answers correct!
             </section>}
 
         </main>

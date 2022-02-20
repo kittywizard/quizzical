@@ -3,7 +3,6 @@ import Start from "./components/Start";
 import QuizDisplay from "./components/QuizDisplay/QuizDisplay";
 import { nanoid } from "nanoid";
 
-
 function App() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -19,6 +18,7 @@ function App() {
       .then(data => {
         
         let dataResult = data.results;
+        console.log(dataResult)
 
         //update state with question array
         setQuestions(dataResult);
