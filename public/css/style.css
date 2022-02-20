@@ -59,7 +59,7 @@
 }
 
 .container--start,
-.quiz-display {
+.main--container {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -82,6 +82,16 @@
 
 .start--desc {
   margin: 0.2em;
+}
+
+.check-answers {
+  margin-top: 1.5em;
+}
+
+.results {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin: 0.75em;
 }
 
 body {

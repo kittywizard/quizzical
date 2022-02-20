@@ -81,8 +81,7 @@ export default function QuizDisplay(props) {
     },[results]);
 
     const questionArr = props.data.map((item, index) => {
-        return <div className="quiz-questionBlock">
-            <Question 
+        return <Question 
                 question={item.question}
                 key={nanoid()}
                 id={index + 1}
@@ -90,7 +89,6 @@ export default function QuizDisplay(props) {
                 handleClick={(e, id) => handleClick(e, id)}
                 results={results}
             />
-            </div>
     });
 
     function checkAnswers() {setResults(true)}
@@ -141,12 +139,12 @@ export default function QuizDisplay(props) {
     }
     
     return (
-        <main>
+        <main className="main--container">
             <section className="quiz-display">
                 {questionArr}        
             </section>
 
-            <section>
+            <section className="check-answers">
                 {answerCheck && <button 
                     onClick={checkAnswers}
                     className="btn"
@@ -156,7 +154,7 @@ export default function QuizDisplay(props) {
             </section>
 
             {results &&
-                <section>
+                <section className="results">
                 You got {correctAnswers.length} / 5 answers correct!
             </section>}
 
