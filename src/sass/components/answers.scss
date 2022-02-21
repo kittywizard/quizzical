@@ -5,23 +5,12 @@
 .correct-selected {
     background-color: chocolate;
 }
-
-.selected-incorrect {
-    background-color: cornflowerblue;
-}
-
-.unselected {
-    background-color: cadetblue;
-}
-
-.selected {
-    background-color: #ccc;
-}
-
 .answer {
     padding: 0.5em 1em; 
+    margin: 0.25em;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 0.85rem;
 }
 
 .answers {
@@ -29,3 +18,4 @@
     margin: 0.75em;
     justify-content: space-between;
 }
+

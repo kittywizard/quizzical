@@ -157,6 +157,12 @@ export default function QuizDisplay(props) {
             {results &&
                 <section className="results">
                 You got <span className="result-count">{correctAnswers.length}</span> / 5 answers correct!
+
+                <button className="btn"
+                        
+                    >
+                        New Game
+                    </button>
             </section>}
 
         </main>
