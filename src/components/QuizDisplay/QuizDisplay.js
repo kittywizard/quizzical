@@ -146,14 +146,14 @@ export default function QuizDisplay(props) {
                 {questionArr}        
             </section>
 
-            <section className="check-answers">
+            {!results && <section className="check-answers">
                 {answerCheck && <button 
                     onClick={checkAnswers}
                     className="btn"
                     > 
                     Check answers
                 </button>}
-            </section>
+            </section>}
 
             {results &&
                 <section className="results">
