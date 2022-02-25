@@ -44,6 +44,7 @@ export default function QuizDisplay(props) {
 
     /*
         use effect works - need to work out a bug if user changes answer after all 5 are selected
+        sometimes it seems like it doens't update properly
     */
 
     useEffect(() => {
@@ -149,7 +150,7 @@ export default function QuizDisplay(props) {
                 {answerCheck && <button 
                     onClick={checkAnswers}
                     className="btn"
-                > 
+                    > 
                     Check answers
                 </button>}
             </section>
