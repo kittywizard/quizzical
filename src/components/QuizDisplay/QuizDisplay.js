@@ -46,7 +46,8 @@ export default function QuizDisplay(props) {
 
     /*
         use effect works - need to work out a bug if user changes answer after all 5 are selected
-        sometimes it seems like it doens't update properly
+        sometimes it seems like it doens't update properly?? 
+            attempting to test and find out why. nothing so far.
     */
 
     useEffect(() => {
@@ -54,11 +55,8 @@ export default function QuizDisplay(props) {
 
         //need to check and ensure it's not the initial render
         if(answerArray.length === 5){
-            console.log("answer array is at 5");
             answerArray.forEach(answer => {
-                console.log('for each runs ' + answer)
                 for(let a = 0; a < 3; a++) {
-                    console.log()
                     if(answer[a].isSelected) {
                         check++;
                     }
@@ -72,7 +70,7 @@ export default function QuizDisplay(props) {
      
     },[answerArray]);
 
-    
+    //useEffect that checks when results changes- filters the answers for correct ones    
     useEffect(() => {
         if(results) {
              const checkForCorrect = answerArray.filter(answer => {
@@ -143,6 +141,11 @@ export default function QuizDisplay(props) {
         //update state!!!!
         setAnswerArray(prevState => prevState.map(answer => id === answer.id ? arr : answer))
     }
+
+    //reloads the page for now. add more features later
+    function newGame() {
+        window.location.reload(false);
+    }
     
     return (
         <main className="main--container">
@@ -164,7 +167,7 @@ export default function QuizDisplay(props) {
                 You got <span className="result-count">{correctAnswers.length}</span> / 5 answers correct!
 
                 <button className="btn"
-                        
+                        onClick={newGame}
                     >
                         New Game
                     </button>
