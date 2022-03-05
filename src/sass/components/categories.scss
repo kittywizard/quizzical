@@ -1,0 +1,23 @@
+.category {
+    padding: 0.5em 1em; 
+    margin: 0.25em;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.container-category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 2em;
+
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34); 
+    box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.34);
+}
