@@ -18,7 +18,6 @@ function App() {
       .then(data => {
         
         let dataResult = data.results;
-        console.log(dataResult)
 
         //update state with question array
         setQuestions(dataResult);

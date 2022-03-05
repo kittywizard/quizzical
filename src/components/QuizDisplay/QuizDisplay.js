@@ -5,6 +5,7 @@ import he from 'he';
 
 export default function QuizDisplay(props) {
 
+    //temp variables for map() and setting state
     let tempAnswerArray = [];
     let completeAnswerArray = [];
     let answerObject = {};
@@ -37,6 +38,7 @@ export default function QuizDisplay(props) {
         completeAnswerArray.push(tempAnswerArray);
     });
 
+    //state
     const [answerArray, setAnswerArray] = useState(completeAnswerArray);
     const [answerCheck, setAnswerCheck] = useState(false);
     const [results, setResults] = useState(false);
@@ -52,9 +54,11 @@ export default function QuizDisplay(props) {
 
         //need to check and ensure it's not the initial render
         if(answerArray.length === 5){
-
+            console.log("answer array is at 5");
             answerArray.forEach(answer => {
+                console.log('for each runs ' + answer)
                 for(let a = 0; a < 3; a++) {
+                    console.log()
                     if(answer[a].isSelected) {
                         check++;
                     }
