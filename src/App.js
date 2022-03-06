@@ -1,34 +1,33 @@
 import {React, useState, useEffect} from "react";
 import Start from "./components/Start";
-import QuizDisplay from "./components/QuizDisplay/QuizDisplay";
+import Categories from "./components/Categories";
 import { nanoid } from "nanoid";
 
 function App() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [category, setCategories] = useState([]);
+
+  //update this to account for category choice
+  useEffect(() =>  {
+      try {
+        fetch(`https://opentdb.com/api_category.php`)
+        .then(resp => resp.json())
+        .then(data => {
+              setCategories(data.trivia_categories);
+        });
+      }
+      catch(error){
+        console.log(error);
+      }
+  
+    }, []);
+
 
   function toggleStart() {
     setStartQuiz(true);
   }
 
-  useEffect(() =>  {
-    try {
-      fetch(`https://opentdb.com/api.php?amount=5&type=multiple`)
-      .then(resp => resp.json())
-      .then(data => {
-        
-        let dataResult = data.results;
-
-        //update state with question array
-        setQuestions(dataResult);
-      });
-    }
-    catch(error){
-      console.log(error);
-    }
-   
-
-  }, []);
 
   return (
     <div className="container">
@@ -37,12 +36,13 @@ function App() {
               toggle={toggleStart}
             />
       }
-
-      {startQuiz &&
-        <QuizDisplay 
-            data={questions}
-            key={nanoid()}
-        />
+      {
+        startQuiz &&
+          <Categories 
+              setQuestions={setQuestions}
+              questions={questions}
+              category={category}
+          />
       }
 
     </div>
