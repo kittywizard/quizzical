@@ -8,7 +8,7 @@ export default function Start(props) {
             onClick={props.toggle}
             className="btn"
         >
-            Start Quiz
+            Select Category
         </button>
     </div>
 
