@@ -15,6 +15,14 @@ export default function Categories(props) {
                 isSelected: false
             }
         });
+
+        tempArray.push({
+            name: "All",
+            id: 0,
+            key: nanoid(),
+            isSelected: false
+        });
+        
         setCategories(tempArray);
     }, []);
 
@@ -24,6 +32,7 @@ export default function Categories(props) {
     }
 
     function toggleCategories(id) {
+        //check to ensure only one can be selected
 
         setCategories(prevState => prevState.map(category => {
             return category.id === id ?
@@ -32,6 +41,25 @@ export default function Categories(props) {
         }))
         
     }
+
+    useEffect(() => {
+        if(startGame) {
+            //need to determine which category is Selected
+            const result = categories.filter(category => category.isSelected === true)
+            console.log(result)
+            let url = `https://opentdb.com/api.php?amount=5&type=multiple`
+           
+            //check to see if result is not 0 - which means all (and no category needed)
+           url += result[0].id !== 0 ? `&category=${result[0].id}` : '';
+          
+           console.log(url)
+           fetch(url)
+           .then(resp => resp.json())
+           .then(data => {
+               props.setQuestions(data.results)
+           })
+        }
+    }, [startGame])
 
     //map and render all the categories
      const arrayCategories = categories.map(category => {
@@ -51,15 +79,13 @@ export default function Categories(props) {
 
                 <h2 className="headline">Choose a category to get started!</h2>
 
-                <Category
-                    id={0}
-                    name="All"
-                    key={nanoid()}
-                />
-                {arrayCategories}
+                <div className="categories">
+                     {arrayCategories}
+                </div>
 
                 <button 
                     className="btn"
+                    style={{display: "block"}}
                     onClick={toggleStart}>
                 Start Game!
                 </button>
