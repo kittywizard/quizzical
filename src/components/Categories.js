@@ -28,7 +28,8 @@ export default function Categories(props) {
 
 
     function toggleStart() {
-        setStartGame(true)
+        const find = categories.find(selected => selected.isSelected === true)
+        find != undefined ? setStartGame(true) : console.log("Please select a category to begin.")
     }
 
     function toggleCategories(id) {
@@ -46,7 +47,6 @@ export default function Categories(props) {
         if(startGame) {
             //need to determine which category is Selected
             const result = categories.filter(category => category.isSelected === true)
-            console.log(result)
             let url = `https://opentdb.com/api.php?amount=5&type=multiple`
            
             //check to see if result is not 0 - which means all (and no category needed)
@@ -86,8 +86,9 @@ export default function Categories(props) {
                 <button 
                     className="btn"
                     style={{display: "block"}}
-                    onClick={toggleStart}>
-                Start Game!
+                    onClick={toggleStart}
+                >
+                    Start Game!
                 </button>
                 </section>
             }
