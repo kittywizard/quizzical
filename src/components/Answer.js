@@ -6,7 +6,7 @@ export default function Answer(props) {
         if(props.results){
             if (props.isSelected && props.isCorrectAnswer) return "rgb(87, 221, 116)"
             else if (props.isSelected && !props.isCorrectAnswer) return "rgb(252, 121, 98)"
-            else if (props.isCorrect && !props.isSelected) return "rgb(100, 221, 100)"
+            else if (props.isCorrectAnswer && !props.isSelected) return "rgb(100, 221, 100)"
             else if(props.isSelected) return "rgba(19,27,105, 0.5)"
             else {
                 return "rgba(19,27,105, 0.2)"
